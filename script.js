@@ -7,10 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
 
-    // Add an event listener for the 'submit' event
-    form.addEventListener('submit', (event) => {
-        event.preventDefault(); // Prevent form submission to the server
-
+    // Function to validate the form
+    function validateForm() {
         // Retrieve values and trim whitespace
         const username = usernameInput.value.trim();
         const email = emailInput.value.trim();
@@ -45,10 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
             messages.push('Password must be at least 8 characters long.');
         }
 
-        // Make feedbackDiv visible
-        feedbackDiv.style.display = "block";
-
         // Provide feedback based on validation status
+        feedbackDiv.style.display = "block";
         if (isValid) {
             feedbackDiv.textContent = 'Registration successful!';
             feedbackDiv.style.color = '#28a745'; // Green color for success
@@ -56,5 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
             feedbackDiv.innerHTML = messages.join('<br>'); // Join messages with <br>
             feedbackDiv.style.color = '#dc3545'; // Red color for errors
         }
+
+        return isValid; // Return validation status
+    }
+
+    // Add an event listener for the 'submit' event
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent form submission to the server
+        validateForm(); // Call the validation function
     });
 });
