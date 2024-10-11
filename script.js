@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let isValid = true; // Track overall validation status
         const messages = []; // Store validation error messages
 
-        // Example validation logic
+        // Validation logic
         if (username === '') {
             isValid = false;
             messages.push('Username is required.');
@@ -28,20 +28,19 @@ document.addEventListener('DOMContentLoaded', () => {
             isValid = false;
             messages.push('Username must be at least 3 characters long.');
         }
+
         if (email === '') {
             isValid = false;
             messages.push('Email is required.');
         } else if (!/\S+@\S+\.\S+/.test(email)) {
             isValid = false;
             messages.push('Email is not valid.');
-        } else if (!email.includes('@') || !email.includes('.')) {
-            isValid = false;
-            messages.push('Email must include both "@" and "." characters.');
         }
+
         if (password === '') {
             isValid = false;
             messages.push('Password is required.');
-        } else if (password.length < 8) { // Check for minimum length of 8
+        } else if (password.length < 8) {
             isValid = false;
             messages.push('Password must be at least 8 characters long.');
         }
